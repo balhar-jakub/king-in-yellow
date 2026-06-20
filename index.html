@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ve Žluté 20. 2. 2027</title>
+  <meta name="description" content="Ve Žluté — Večer plný tajemství očekává pár vybraných. Lovecraftovský ples v Plzni, Únor 20, 2027.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Ve Žluté 20. 2. 2027">
+  <meta property="og:description" content="Ve Žluté — Večer plný tajemství očekává pár vybraných. Lovecraftovský ples v Plzni, Únor 20, 2027.">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; }
+    body {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      background: #0a0a0a;
+      color: #d4cfc4;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── CSS Custom Properties ── */
+    :root {
+      --gold: #ddad31;
+      --gold-light: #e8c854;
+      --gold-dim: rgba(221, 173, 49, 0.5);
+      --gold-faint: rgba(221, 173, 49, 0.3);
+      --bg: #0a0a0a;
+      --muted: #9a9484;
+      --font-display: 'Cinzel', Georgia, serif;
+      --font-body: 'Cormorant Garamond', Georgia, serif;
+    }
+
+    /* ── Layout ── */
+    .container {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 2rem 1rem;
+    }
+
+    /* ── Fog / Atmospheric Effects ── */
+    .fog-layer {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+    .fog-1 {
+      animation: fog 12s ease-in-out infinite;
+      opacity: 0.3;
+      background: radial-gradient(at 20% 50%, rgba(221, 173, 49, 0.06) 0%, transparent 60%);
+    }
+    .fog-2 {
+      animation: fog-reverse 18s ease-in-out infinite;
+      opacity: 0.2;
+      background: radial-gradient(at 80% 30%, rgba(221, 173, 49, 0.04) 0%, transparent 50%);
+    }
+
+    @keyframes fog {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.15); }
+    }
+    @keyframes fog-reverse {
+      0%, 100% { transform: scale(1.1); }
+      50% { transform: scale(0.95); }
+    }
+
+    /* ── Vertical Accent Lines ── */
+    .accent-line {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1px;
+      height: 6rem;
+    }
+    .accent-line-top {
+      top: 0;
+      background: linear-gradient(to bottom, transparent, var(--gold-faint), transparent);
+    }
+    .accent-line-bottom {
+      bottom: 0;
+      background: linear-gradient(to top, transparent, var(--gold-faint), transparent);
+    }
+
+    /* ── Card Wrapper ── */
+    .card-outer {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      max-width: 36rem;
+    }
+
+    /* ── Ornate Frame ── */
+    .frame {
+      position: relative;
+    }
+    .frame-outer {
+      position: absolute;
+      inset: 0;
+      border: 1px solid var(--gold-faint);
+    }
+    .frame-inner {
+      position: absolute;
+      inset: 0.75rem;
+      border: 1px solid var(--gold-dim);
+    }
+
+    /* ── Corner Decorations ── */
+    .corner {
+      position: absolute;
+      width: 2rem;
+      height: 2rem;
+    }
+    .corner::before,
+    .corner::after {
+      content: '';
+      position: absolute;
+      background: var(--gold);
+    }
+    .corner-tl { top: 0; left: 0; }
+    .corner-tr { top: 0; right: 0; }
+    .corner-bl { bottom: 0; left: 0; }
+    .corner-br { bottom: 0; right: 0; }
+
+    /* Horizontal arm */
+    .corner-tl::before, .corner-tr::before,
+    .corner-bl::before, .corner-br::before {
+      top: 0;
+      width: 100%;
+      height: 1px;
+    }
+    .corner-tl::before { left: 0; }
+    .corner-tr::before { right: 0; }
+    .corner-bl::before { left: 0; }
+    .corner-br::before { right: 0; }
+
+    /* Vertical arm */
+    .corner-tl::after, .corner-tr::after,
+    .corner-bl::after, .corner-br::after {
+      top: 0;
+      width: 1px;
+      height: 100%;
+    }
+    .corner-tl::after { left: 0; }
+    .corner-tr::after { right: 0; }
+    .corner-bl::after { left: 0; }
+    .corner-br::after { right: 0; }
+
+    /* Inner diamond at each corner */
+    .corner-diamond {
+      position: absolute;
+      width: 0.75rem;
+      height: 0.75rem;
+      transform: rotate(45deg);
+    }
+    .corner-tl .corner-diamond {
+      top: 0.75rem; left: 0.75rem;
+      border-top: 1px solid rgba(221, 173, 49, 0.7);
+      border-left: 1px solid rgba(221, 173, 49, 0.7);
+    }
+    .corner-tr .corner-diamond {
+      top: 0.75rem; right: 0.75rem;
+      border-top: 1px solid rgba(221, 173, 49, 0.7);
+      border-right: 1px solid rgba(221, 173, 49, 0.7);
+    }
+    .corner-bl .corner-diamond {
+      bottom: 0.75rem; left: 0.75rem;
+      border-bottom: 1px solid rgba(221, 173, 49, 0.7);
+      border-left: 1px solid rgba(221, 173, 49, 0.7);
+    }
+    .corner-br .corner-diamond {
+      bottom: 0.75rem; right: 0.75rem;
+      border-bottom: 1px solid rgba(221, 173, 49, 0.7);
+      border-right: 1px solid rgba(221, 173, 49, 0.7);
+    }
+
+    /* ── Card Content ── */
+    .card {
+      position: relative;
+      padding: 2rem;
+      text-align: center;
+    }
+    @media (min-width: 768px) {
+      .card { padding: 3rem; }
+    }
+
+    .card-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    /* ── Divider ── */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .divider-line {
+      width: 3rem;
+      height: 1px;
+      background: rgba(221, 173, 49, 0.4);
+    }
+    .divider-diamond {
+      width: 0.5rem;
+      height: 0.5rem;
+      transform: rotate(45deg);
+      border: 1px solid rgba(221, 173, 49, 0.6);
+    }
+
+    .divider-wide {
+      width: 100%;
+      max-width: 20rem;
+    }
+    .divider-wide .divider-line {
+      flex: 1;
+    }
+    .divider-wide .divider-diamond {
+      background: rgba(221, 173, 49, 0.5);
+    }
+
+    /* ── Typography ── */
+    .title {
+      font-family: var(--font-display);
+      font-size: 2.25rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      line-height: 1.15;
+      background: linear-gradient(180deg, #e8c854 0%, #b8942a 50%, #ddad31 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    @media (min-width: 768px) {
+      .title { font-size: 3.75rem; }
+    }
+
+    .subtitle {
+      font-family: var(--font-body);
+      font-size: 1.125rem;
+      font-style: italic;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+    }
+    @media (min-width: 768px) {
+      .subtitle { font-size: 1.25rem; }
+    }
+
+    .date {
+      font-family: var(--font-display);
+      font-size: 0.875rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(212, 207, 196, 0.8);
+    }
+    @media (min-width: 768px) {
+      .date { font-size: 1rem; }
+    }
+
+    .quote {
+      font-family: var(--font-body);
+      font-size: 1.125rem;
+      color: var(--muted);
+      font-style: italic;
+      max-width: 24rem;
+      line-height: 1.6;
+    }
+    @media (min-width: 768px) {
+      .quote { font-size: 1.25rem; }
+    }
+
+    /* ── Countdown ── */
+    .countdown {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+    }
+    @media (min-width: 768px) {
+      .countdown { gap: 2rem; }
+    }
+
+    .countdown-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .countdown-box-wrap {
+      position: relative;
+    }
+    .countdown-box {
+      width: 4rem;
+      height: 4rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(221, 173, 49, 0.4);
+    }
+    @media (min-width: 768px) {
+      .countdown-box {
+        width: 5rem;
+        height: 5rem;
+      }
+    }
+    .countdown-value {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      color: var(--gold);
+      font-variant-numeric: tabular-nums;
+    }
+    @media (min-width: 768px) {
+      .countdown-value { font-size: 1.875rem; }
+    }
+    .countdown-diamond {
+      position: absolute;
+      bottom: -0.25rem;
+      left: 50%;
+      transform: translateX(-50%) rotate(45deg);
+      width: 0.5rem;
+      height: 0.5rem;
+      background: rgba(221, 173, 49, 0.6);
+    }
+    .countdown-label {
+      margin-top: 0.75rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-family: var(--font-body);
+    }
+    @media (min-width: 768px) {
+      .countdown-label { font-size: 0.875rem; }
+    }
+
+    /* ── Button ── */
+    .btn {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.75rem 2.5rem;
+      border: 1px solid var(--gold-dim);
+      color: var(--gold);
+      font-family: var(--font-display);
+      font-size: 0.875rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      overflow: hidden;
+      transition: border-color 0.5s, color 0.5s;
+    }
+    .btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(221, 173, 49, 0.05);
+      transition: background 0.5s;
+    }
+    .btn:hover {
+      border-color: var(--gold);
+      color: var(--gold-light);
+    }
+    .btn:hover::before {
+      background: rgba(221, 173, 49, 0.1);
+    }
+    .btn-text {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 480px) {
+      .card { padding: 1.25rem; }
+      .title { font-size: 1.75rem; }
+      .countdown-box { width: 3.5rem; height: 3.5rem; }
+      .countdown-value { font-size: 1.25rem; }
+      .countdown { gap: 0.75rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Fog layers -->
+    <div class="fog-layer fog-1"></div>
+    <div class="fog-layer fog-2"></div>
+
+    <!-- Vertical accent lines -->
+    <div class="accent-line accent-line-top"></div>
+    <div class="accent-line accent-line-bottom"></div>
+
+    <!-- Card -->
+    <div class="card-outer">
+      <div class="frame">
+        <!-- Frame borders -->
+        <div class="frame-outer"></div>
+        <div class="frame-inner"></div>
+
+        <!-- Corner decorations -->
+        <div class="corner corner-tl">
+          <div class="corner-diamond"></div>
+        </div>
+        <div class="corner corner-tr">
+          <div class="corner-diamond"></div>
+        </div>
+        <div class="corner corner-bl">
+          <div class="corner-diamond"></div>
+        </div>
+        <div class="corner corner-br">
+          <div class="corner-diamond"></div>
+        </div>
+
+        <!-- Card content -->
+        <div class="card">
+          <div class="card-section">
+            <!-- Top ornament -->
+            <div class="divider">
+              <div class="divider-line"></div>
+              <div class="divider-diamond"></div>
+              <div class="divider-line"></div>
+            </div>
+
+            <!-- Title -->
+            <div>
+              <h1 class="title">Ve Žluté</h1>
+              <p class="subtitle">In Yellow</p>
+            </div>
+
+            <!-- Divider -->
+            <div class="divider divider-wide">
+              <div class="divider-line"></div>
+              <div class="divider-diamond"></div>
+              <div class="divider-line"></div>
+            </div>
+
+            <!-- Date -->
+            <p class="date">20. 2. 2027 &nbsp;·&nbsp; Plzeň</p>
+
+            <!-- Quote -->
+            <p class="quote">„Večer oděný tajemstvím čeká na vyvolené."</p>
+
+            <!-- Countdown -->
+            <div class="countdown" id="countdown">
+              <div class="countdown-item">
+                <div class="countdown-box-wrap">
+                  <div class="countdown-box">
+                    <span class="countdown-value" id="days">—</span>
+                  </div>
+                  <div class="countdown-diamond"></div>
+                </div>
+                <span class="countdown-label">Dní</span>
+              </div>
+              <div class="countdown-item">
+                <div class="countdown-box-wrap">
+                  <div class="countdown-box">
+                    <span class="countdown-value" id="hours">—</span>
+                  </div>
+                  <div class="countdown-diamond"></div>
+                </div>
+                <span class="countdown-label">Hodin</span>
+              </div>
+              <div class="countdown-item">
+                <div class="countdown-box-wrap">
+                  <div class="countdown-box">
+                    <span class="countdown-value" id="minutes">—</span>
+                  </div>
+                  <div class="countdown-diamond"></div>
+                </div>
+                <span class="countdown-label">Minut</span>
+              </div>
+              <div class="countdown-item">
+                <div class="countdown-box-wrap">
+                  <div class="countdown-box">
+                    <span class="countdown-value" id="seconds">—</span>
+                  </div>
+                  <div class="countdown-diamond"></div>
+                </div>
+                <span class="countdown-label">Sekund</span>
+              </div>
+            </div>
+
+            <!-- Divider -->
+            <div class="divider divider-wide">
+              <div class="divider-line"></div>
+              <div class="divider-diamond"></div>
+              <div class="divider-line"></div>
+            </div>
+
+            <!-- Enter button -->
+            <a href="/login" class="btn">
+              <span class="btn-text">Vstupte</span>
+            </a>
+
+            <!-- Bottom ornament -->
+            <div class="divider">
+              <div class="divider-line"></div>
+              <div class="divider-diamond"></div>
+              <div class="divider-line"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ── Countdown Timer ──
+    const targetDate = new Date('2027-02-20T20:00:00+01:00'); // Pilsen time (CET)
+
+    function pad(n) {
+      return String(n).padStart(2, '0');
+    }
+
+    function updateCountdown() {
+      const now = new Date();
+      const diff = targetDate - now;
+
+      if (diff <= 0) {
+        document.getElementById('days').textContent = '00';
+        document.getElementById('hours').textContent = '00';
+        document.getElementById('minutes').textContent = '00';
+        document.getElementById('seconds').textContent = '00';
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      document.getElementById('days').textContent = days;
+      document.getElementById('hours').textContent = pad(hours);
+      document.getElementById('minutes').textContent = pad(minutes);
+      document.getElementById('seconds').textContent = pad(seconds);
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
+</body>
+</html>

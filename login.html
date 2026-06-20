@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vstupte — Ve Žluté</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      background: #0a0a0a;
+      color: #d4cfc4;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+    .container {
+      text-align: center;
+      max-width: 28rem;
+      width: 100%;
+    }
+    h1 {
+      font-family: 'Cinzel', Georgia, serif;
+      font-size: 2.5rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      background: linear-gradient(180deg, #e8c854 0%, #b8942a 50%, #ddad31 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1.5rem;
+    }
+    p {
+      font-size: 1.125rem;
+      color: #9a9484;
+      font-style: italic;
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      max-width: 12rem;
+      margin: 2rem auto;
+    }
+    .divider-line {
+      flex: 1;
+      height: 1px;
+      background: rgba(221, 173, 49, 0.4);
+    }
+    .divider-diamond {
+      width: 0.5rem;
+      height: 0.5rem;
+      transform: rotate(45deg);
+      border: 1px solid rgba(221, 173, 49, 0.6);
+    }
+    a {
+      color: #ddad31;
+      font-family: 'Cinzel', Georgia, serif;
+      letter-spacing: 0.2em;
+      text-decoration: none;
+      font-size: 0.875rem;
+      text-transform: uppercase;
+    }
+    a:hover { color: #e8c854; }
+    .input-group {
+      margin-bottom: 1rem;
+    }
+    input {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      background: rgba(221, 173, 49, 0.05);
+      border: 1px solid rgba(221, 173, 49, 0.3);
+      color: #d4cfc4;
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1rem;
+      text-align: center;
+      outline: none;
+    }
+    input:focus {
+      border-color: rgba(221, 173, 49, 0.6);
+    }
+    input::placeholder {
+      color: rgba(212, 207, 196, 0.4);
+    }
+    button {
+      width: 100%;
+      padding: 0.75rem;
+      background: rgba(221, 173, 49, 0.1);
+      border: 1px solid rgba(221, 173, 49, 0.5);
+      color: #ddad31;
+      font-family: 'Cinzel', Georgia, serif;
+      font-size: 0.875rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    button:hover {
+      background: rgba(221, 173, 49, 0.15);
+      border-color: #ddad31;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Ve Žluté</h1>
+    <p>„Večer oděný tajemstvím čeká na vyvolené."</p>
+    <div class="divider">
+      <div class="divider-line"></div>
+      <div class="divider-diamond"></div>
+      <div class="divider-line"></div>
+    </div>
+    <div class="input-group">
+      <input type="text" placeholder="Jméno" id="name">
+    </div>
+    <div class="input-group">
+      <input type="password" placeholder="Heslo" id="password">
+    </div>
+    <button onclick="alert('Vstup zatím není aktivní.')">Vstupte</button>
+    <div class="divider">
+      <div class="divider-line"></div>
+      <div class="divider-diamond"></div>
+      <div class="divider-line"></div>
+    </div>
+    <a href="/">&larr; Zpět</a>
+  </div>
+</body>
+</html>
