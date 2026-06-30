@@ -66,6 +66,7 @@ ExecStart=/home/balda/.nvm/nvm-exec next start -p 8081 -H 127.0.0.1
 Restart=always
 RestartSec=5
 Environment=NODE_ENV=production
+Environment=NODE_OPTIONS=--unhandled-rejections=warn
 Environment=PATH=/home/balda/.nvm/versions/node/v22.22.2/bin:/usr/local/bin:/usr/bin:/bin
 
 [Install]
