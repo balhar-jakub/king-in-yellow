@@ -28,8 +28,10 @@ export async function sendEmail({ to, subject, html }: SendEmailParams) {
   return info;
 }
 
-export function sendMagicLinkEmail(email: string, token: string) {
-  const link = `${process.env.SITE_URL || "https://plesvezlute.cz"}/api/auth/verify?token=${token}`;
+export function sendMagicLinkEmail(email: string, token: string, redirect?: string) {
+  const siteUrl = process.env.SITE_URL || "https://plesvezlute.cz";
+  const redirectParam = redirect ? `&redirect=${encodeURIComponent(redirect)}` : "";
+  const link = `${siteUrl}/api/auth/verify?token=${token}${redirectParam}`;
 
   return sendEmail({
     to: email,
