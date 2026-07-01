@@ -1,0 +1,43 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-gold: #ddad31;
+  --color-gold-light: #e8c854;
+  --color-gold-dark: #b8942a;
+  --color-bg: #0a0a0a;
+  --color-muted: #9a9484;
+  --color-body: #d4cfc4;
+  --font-display: var(--font-cinzel), Georgia, serif;
+  --font-body: var(--font-cormorant), Georgia, serif;
+}
+
+/* ── Base ── */
+body {
+  background: var(--color-bg);
+  color: var(--color-body);
+  font-family: var(--font-body);
+}
+
+/* ── Gold Gradient Text ── */
+.text-gold-gradient {
+  background: linear-gradient(180deg, #e8c854 0%, #b8942a 50%, #ddad31 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Fog Animations ── */
+@keyframes fog {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+}
+@keyframes fog-reverse {
+  0%, 100% { transform: scale(1.1); }
+  50% { transform: scale(0.95); }
+}
+.animate-fog {
+  animation: fog 12s ease-in-out infinite;
+}
+.animate-fog-reverse {
+  animation: fog-reverse 18s ease-in-out infinite;
+}
