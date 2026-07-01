@@ -45,7 +45,7 @@ export async function GET(request: NextRequest) {
     });
 
     // Sign JWT
-    const jwt = signToken({ sub: user.id, email: user.email });
+    const jwt = await signToken({ sub: user.id, email: user.email });
 
     // Create response with redirect
     const response = NextResponse.redirect(new URL(redirect, SITE_URL));

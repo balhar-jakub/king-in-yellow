@@ -2,13 +2,11 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { verifyToken } from "@/lib/auth";
 
-export const runtime = "nodejs";
-
 // Routes that don't require authentication
-const PUBLIC_PATHS = ["/", "/login", "/loterie"];
+const PUBLIC_PATHS = ["/", "/login"];
 const PUBLIC_PREFIXES = ["/api/auth/", "/_next/", "/favicon.ico"];
 
-export function middleware(request: NextRequest) {
+export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   // Allow public paths
@@ -22,7 +20,7 @@ export function middleware(request: NextRequest) {
   // Check auth cookie
   const token = request.cookies.get("auth_token")?.value;
 
-  if (!token || !verifyToken(token)) {
+  if (!token || !(await verifyToken(token))) {
     // Redirect to login, preserving the original destination
     const loginUrl = new URL("/login", request.url);
     loginUrl.searchParams.set("redirect", pathname);
