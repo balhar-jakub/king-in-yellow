@@ -4,7 +4,7 @@ import { verifyToken } from "@/lib/auth";
 
 // Routes that don't require authentication
 const PUBLIC_PATHS = ["/", "/login"];
-const PUBLIC_PREFIXES = ["/api/auth/", "/_next/", "/favicon.ico"];
+const PUBLIC_PREFIXES = ["/api/auth/", "/api/", "/_next/", "/favicon.ico"];
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
