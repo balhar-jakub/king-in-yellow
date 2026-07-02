@@ -7,7 +7,7 @@ const SITE_URL = process.env.SITE_URL || "https://plesvezlute.cz";
 export async function GET(request: NextRequest) {
   try {
     const token = request.nextUrl.searchParams.get("token");
-    const redirect = request.nextUrl.searchParams.get("redirect") || "/";
+    const redirect = request.nextUrl.searchParams.get("redirect") || "/nastenka";
 
     if (!token) {
       return NextResponse.redirect(

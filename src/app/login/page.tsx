@@ -7,7 +7,7 @@ import { Suspense } from "react";
 
 function LoginForm() {
   const searchParams = useSearchParams();
-  const redirect = searchParams.get("redirect") || "/";
+  const redirect = searchParams.get("redirect") || "/nastenka";
   const error = searchParams.get("error");
 
   const [email, setEmail] = useState("");
