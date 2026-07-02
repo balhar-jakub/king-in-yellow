@@ -37,7 +37,7 @@ export default function VstupenkyPage() {
   useEffect(() => {
     fetch("/api/orders")
       .then((r) => r.json())
-      .then((data) => { setOrder(data.id ? data : null); setLoading(false); });
+      .then((data) => { setOrder(data?.id ? data : null); setLoading(false); });
   }, []);
 
   const handleSelect = async (ticketType: string) => {
