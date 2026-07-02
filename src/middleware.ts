@@ -8,12 +8,17 @@ const PUBLIC_PREFIXES = ["/api/auth/", "/api/", "/_next/", "/favicon.ico"];
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  // Redirect authenticated users away from landing/login to dashboard
-  if (pathname === "/" || pathname === "/login") {
+  // Redirect authenticated users away from login to dashboard
+  if (pathname === "/login") {
     const token = request.cookies.get("auth_token")?.value;
     if (token && (await verifyToken(token))) {
       return NextResponse.redirect(new URL("/nastenka", request.url));
     }
+    return NextResponse.next();
+  }
+
+  // Landing page is always public
+  if (pathname === "/") {
     return NextResponse.next();
   }
 
